@@ -16,9 +16,13 @@ If you want to run the model, first, download the models from [here](https://dri
 Then put all four modalities in ./test directory with following format and run fusion.py:
 
 test/
+
   ├─ t2w.nii.gz
+  
   ├─ t1c.nii.gz
+  
   ├─ t1n.nii.gz
+  
   └─ t2f.nii.gz
 
 Then run the following commands in order:
