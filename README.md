@@ -1,6 +1,6 @@
 # BraTS23
 
-# Our team submission to the 2023 Brain Tumor Segmentation Challenge
+# Our team's submission to the 2023 Brain Tumor Segmentation Challenge
 
 This repo contains the codes and pretrained weights for the our submission to the 2023 Brain Tumor Segmentation Challenge.
 
