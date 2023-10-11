@@ -7,10 +7,10 @@ This repo contains the codes and pretrained weights for the our submission to th
 ## Using Model
 Whit these two option you can test model
 
-### Notebook
+### Run locally
 You can run test.ipynb for test our model.
 
-### Run code
+### Run code on Google Colab
 If you want to run the model, first, download the models from [here](https://drive.google.com/file/d/1wsxlOdcL0Gjw8k9ZUt4-x-V1EqnOp0SJ/view?usp=share_link). Extract the files and put the models in the `nnUNet_results` that you set up with nnUNet.
 
 Then put all four modalities in ./test directory with following format and run fusion.py:
