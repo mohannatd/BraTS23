@@ -22,10 +22,11 @@ Then put all four modalities in `<INPUT>` directory with following names and for
   └─ t2f.nii.gz
 
 Run the test function from main.py with your directory as inputs:
-```test(`<INPUT>`, `<OUTPUT>`, `<RESULTS>`)
 
-`<INPUT>`: Directory where you put your raw input files in.\n
+```test(`<INPUT>`, `<OUTPUT>`, `<RESULTS>`)```
 
-`<OUTPUT>`: Directory where you want to output file be saved.\n
+`<INPUT>`: Directory where you put your raw input files in.
 
-`<RESULTS>`: Directory where you put the model weight([final](https://drive.google.com/file/d/1wsxlOdcL0Gjw8k9ZUt4-x-V1EqnOp0SJ/view?usp=share_link)) in.\n
+`<OUTPUT>`: Directory where you want to output file be saved.
+
+`<RESULTS>`: Directory where you put the model weight([final](https://drive.google.com/file/d/1wsxlOdcL0Gjw8k9ZUt4-x-V1EqnOp0SJ/view?usp=share_link)) in.
