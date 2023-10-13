@@ -11,7 +11,7 @@ If you want to run the model, first, download the models from [here](https://dri
 
 Then put all four modalities in `<INPUT>` directory with following names and format:
 
-<INPUT>/
+`<INPUT>`/
 
   ├─ t2w.nii.gz
   
