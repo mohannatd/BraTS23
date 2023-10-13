@@ -23,7 +23,7 @@ Then put all four modalities in `<INPUT>` directory with following names and for
 
 Run the test function from main.py with your directory as inputs:
 
-```test(`<INPUT>`, `<OUTPUT>`, `<RESULTS>`)```
+```test(<INPUT>, <OUTPUT>, <RESULTS>)```
 
 `<INPUT>`: Directory where you put your raw input files in.
 
