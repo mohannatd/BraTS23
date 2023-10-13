@@ -13,7 +13,7 @@ You can run test.ipynb for test our model.
 ### Run code on Google Colab
 If you want to run the model, first, download the models from [here](https://drive.google.com/file/d/1wsxlOdcL0Gjw8k9ZUt4-x-V1EqnOp0SJ/view?usp=share_link). Extract the files and put the models in the `nnUNet_results` that you set up with nnUNet.
 
-Then put all four modalities in ./test directory with following names format and run fusion.py:
+Then put all four modalities in ./test directory with following names and format and run fusion.py:
 
 test/
 
