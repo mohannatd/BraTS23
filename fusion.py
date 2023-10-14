@@ -1,12 +1,18 @@
+import os
+from batchgenerators.utilities.file_and_folder_operations import *
+
+os.environ["nnUNet_raw"] = join('.')
+os.environ["nnUNet_preprocessed"] = join('.')
+os.environ["nnUNet_results"] = join('.')
+
 import torch
+import shutil
 import numpy as np
 import torch.nn as nn
-from PIL import Image
 import nibabel as nib
-import SimpleITK as sitk
-import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from torchvision.models.vgg import vgg19
+
 
 class VGG19(torch.nn.Module):
     def __init__(self, device='cuda'):
@@ -84,12 +90,12 @@ class Fusion:
             for sum_maps in zip(*imgs_sum_maps):
                 features = torch.cat(sum_maps, dim=1)
                 weights = self._softmax(F.interpolate(features,
-                                        size=self.images_to_tensors[0].shape[2:]))
+                                                      size=self.images_to_tensors[0].shape[2:]))
                 weights = F.interpolate(weights,
                                         size=self.images_to_tensors[0].shape[2:])
                 current_fusion = torch.zeros(self.images_to_tensors[0].shape)
                 for idx, tensor_img in enumerate(self.images_to_tensors):
-                    current_fusion += tensor_img * weights[:,idx]
+                    current_fusion += tensor_img * weights[:, idx]
                 if max_fusion is None:
                     max_fusion = current_fusion
                 else:
@@ -122,7 +128,7 @@ class Fusion:
             return True
         if img.shape[2] == 1:
             return True
-        b, g, r = img[:,:,0], img[:,:,1], img[:,:,2]
+        b, g, r = img[:, :, 0], img[:, :, 1], img[:, :, 2]
         if (b == g).all() and (b == r).all():
             return True
         return False
@@ -150,41 +156,3 @@ class Fusion:
                 self.images_to_tensors.append(torch.from_numpy(np_input).cuda())
             else:
                 self.images_to_tensors.append(torch.from_numpy(np_input))
-
-def normalizer(image):
-    img_min = np.min(image)
-    img_max = np.max(image)
-    image = (image - img_min ) / ( img_max - img_min)
-    image = image * 255
-    return image
-
-def zero_learning_fusion(input_images):
-  FU = Fusion(input_images)
-  fusion_img = FU.fuse()
-  return fusion_img
-
-base_dir = './test/'
-
-fusion_modes = ['t1n-t1c', 't1c-t2f', 't1c-t2w']
-
-images = []
-
-for i, mode in enumerate(fusion_modes):
-    Final_fusion3D = ''
-    images = [nib.load(base_dir + '{}.nii.gz'.format(mode.split('-')[0])).get_fdata()]
-    images.append(nib.load(base_dir + '{}.nii.gz'.format(mode.split('-')[1])).get_fdata())
-    for slice_num in range(155):
-        if (slice_num%10) == 0:
-          clear_output()
-          print(percentage(155*i + slice_num + 1, 155*3))
-        slices = [normalizer(image[:,:,slice_num]) for image in images]
-        fusion = zero_learning_fusion(slices)
-        if slice_num == 0:
-            Final_fusion3D = fusion
-        else:
-            Final_fusion3D = np.dstack((Final_fusion3D ,fusion))
-
-    output = nib.Nifti1Image(Final_fusion3D, np.eye(4))
-    output.header.get_xyzt_units()
-    output.to_filename(base_dir + '{}.nii.gz'.format(mode))
-    print(mode)
