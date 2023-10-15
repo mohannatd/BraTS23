@@ -21,7 +21,7 @@ Then put all four modalities in `<INPUT>` directory with following names and for
 
 
 
-##### With these two option you can test model:
+#### With these two option you can test model:
 
 ### Notebook
 You only need to run **test.ipynb**
