@@ -32,8 +32,8 @@ Using your own directory paths, run the **test** function in main.py:
 
 ```test(<INPUT>, <OUTPUT>, <RESULTS>)```
 
-`<INPUT>`: Directory where you put your raw input files in.
+`<INPUT>`: This is the directory where you put your raw input files.
 
-`<OUTPUT>`: Directory where you want to output file be saved.
+`<OUTPUT>`: This is the directory where you want to save the result.
 
-`<RESULTS>`: Directory where you put the model weight([final](https://drive.google.com/file/d/1wsxlOdcL0Gjw8k9ZUt4-x-V1EqnOp0SJ/view?usp=share_link)) in.
+`<RESULTS>`: This is the directory where you placed the model weight([final](https://drive.google.com/file/d/1wsxlOdcL0Gjw8k9ZUt4-x-V1EqnOp0SJ/view?usp=share_link)).
